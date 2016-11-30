@@ -1,0 +1,23 @@
+body {
+	margin: 0px;
+	padding: 0px;
+}
+
+.btnDiv {
+	width: 800px;
+	margin: 50px auto 1px;
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.btnDiv button {
+	margin-left: 10px;
+}
+
+.container {
+	width: 800px;
+	height: 400px;
+	margin: 0 auto;
+	border: 1px solid #000;
+	overflow: scroll;
+}
