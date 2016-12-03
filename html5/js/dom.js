@@ -2,11 +2,11 @@ var $container = $(".container");
 var DrawUtils = {
 	count: 0,
 	//圆的中心的 x 坐标。
-	x: 70,
+	x: 200,
 	//圆的中心的 y 坐标。
-	y: 30,
+	y: 100,
 	//圆的半径。
-	r: 20,
+	r: 10,
 	//起始角，以弧度计。（弧的圆形的三点钟位置是 0 度）。
 	sAngle: 0,
 	//结束角，以弧度计。
@@ -17,7 +17,7 @@ var DrawUtils = {
 
 DrawUtils.add = function() {
 	DrawUtils.count++;
-	$container.append("<canvas id='cas_" + DrawUtils.count + "'></canvas>");
+	appendCanvas();
 	drawCycle(DrawUtils.x,DrawUtils.y,DrawUtils.r,DrawUtils.sAngle,DrawUtils.eAngle, DrawUtils.counterclockwise,"cas_"+DrawUtils.count);
 };
 
@@ -27,8 +27,16 @@ DrawUtils.remove = function() {
 	}
 };
 
-DrawUtils.zoomIn = function() {
+DrawUtils.zoomIn = function() {	
 	DrawUtils.r += 5;
+	if (DrawUtils.r >= 50) {
+		alert("已经最大了");
+		return;
+	}
+
+	DrawUtils.remove();
+	appendCanvas();
+
 	if ($container.find("canvas#cas_" + DrawUtils.count)[0]) {
 		drawCycle(DrawUtils.x,DrawUtils.y,DrawUtils.r,DrawUtils.sAngle,DrawUtils.eAngle, DrawUtils.counterclockwise,"cas_"+DrawUtils.count,"cas_"+DrawUtils.count);
 	}
@@ -36,12 +44,23 @@ DrawUtils.zoomIn = function() {
 
 DrawUtils.zoomOut = function() {
 	DrawUtils.r -= 5;
+
+	if (DrawUtils.r <= 5) {
+		alert("已经是最小了");
+		return;
+	}
+
+	DrawUtils.remove();
+	appendCanvas();
+
 	if ($container.find("canvas#cas_" + DrawUtils.count)[0]) {
 		drawCycle(DrawUtils.x,DrawUtils.y,DrawUtils.r,DrawUtils.sAngle,DrawUtils.eAngle, DrawUtils.counterclockwise,"cas_"+DrawUtils.count,"cas_"+DrawUtils.count);
 	}
 };
 
 DrawUtils.move = function() {
+	DrawUtils.remove();
+	appendCanvas();
 	DrawUtils.x += 10;
 	DrawUtils.y += 10;
 	if ($container.find("canvas#cas_" + DrawUtils.count)[0]) {
@@ -52,9 +71,15 @@ DrawUtils.move = function() {
 function drawCycle(x,y,r,sAngle,eAngle,counterclockwise,casId){
 	var canvas = document.getElementById(casId);
 	var context = canvas.getContext("2d");
+	canvas.width=300;
+	canvas.height=300;
 	context.fillStyle="#FF0000";
 	context.beginPath();
 	context.arc(x,y,r,sAngle,eAngle,counterclockwise);
 	context.closePath();
 	context.fill();
+}
+
+function appendCanvas() {
+	$container.append("<canvas id='cas_" + DrawUtils.count + "'></canvas>");
 }
