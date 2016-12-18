@@ -82,7 +82,6 @@ function canvasClick(e) {
       }
       previousSelectedCircle = circle;//记录选中的圆
       circle.isSelected = true;
-      circle.selectedCircle = e;
       // 可以被拖动
       isDragging = true;
       selectedCircleIndex = i;
