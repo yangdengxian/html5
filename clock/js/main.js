@@ -19,9 +19,12 @@
 	});
 
 	myApp.directive("clockCanvas",function(){
+		//自适应不同分辨率
+		var templateUrl = screen.height <= 768 ? '../template/templateS.html' : (screen.height <= 900 ? '../template/templateM.html' : '../template/templateL.html');
 		return {
 			restrict: 'E',
-			template: '<canvas id="clock" width="400px" height="400px"></canvas>',
+			// template: '<canvas id="clock" width="400px" height="400px"></canvas>',
+			templateUrl: templateUrl,
 			replace: true,
 			link : function(scope, element, attrs, ctrl) {
 				var clock = document.getElementById("clock");

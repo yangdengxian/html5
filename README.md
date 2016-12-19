@@ -4,3 +4,5 @@ v1.0 canvas 绘制多圆，点击移动和删除
 v1.1canvas 钟表绘制
 
 v1.2添加css3特效和添加angular自定义标签和filter
+
+v1.2.1 添加自适应不同分辨特性
