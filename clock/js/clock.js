@@ -1,4 +1,4 @@
-var clock = document.getElementById("clock");
+/*var clock = document.getElementById("clock");
 var context = clock.getContext("2d");
 var width = context.canvas.width;
 var height = context.canvas.height;
@@ -109,4 +109,4 @@ function draw() {
 
 draw();
 
-setInterval(draw,1000);
+setInterval(draw,1000);*/
